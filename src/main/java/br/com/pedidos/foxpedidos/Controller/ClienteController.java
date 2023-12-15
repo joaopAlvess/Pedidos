@@ -22,7 +22,7 @@ public class ClienteController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity cadastrar(@RequestBody @Valid DTOCadastroCliente data){
+    public ResponseEntity<Void> cadastrar(@RequestBody @Valid DTOCadastroCliente data){
         clienteRepository.save(new Cliente(data));
         return ResponseEntity.ok().build();
     }

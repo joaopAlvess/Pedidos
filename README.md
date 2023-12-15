@@ -1,17 +1,21 @@
 Para criar um sistema de gestão financeira com os requisitos mencionados, você pode seguir a abordagem de desenvolvimento em camadas, onde o backend será desenvolvido usando Java Spring Boot e o frontend usando Angular. Abaixo estão as etapas e algumas ideias sobre como você pode estruturar seu projeto:
 
 Backend (Java Spring Boot):
-Modelo de Dados:
+
+*MODELO DE DADOS:*
 
 Crie uma entidade JPA para representar os dados que serão armazenados no banco de dados (por exemplo, uma classe Transaction).
 Repositório:
 
+**Cliente**
 - Entidade de Cliente já criada (falta implementação)
 
+**Produto**
 
 Crie um repositório JPA para realizar operações no banco de dados, incluindo inserção, atualização, exclusão lógica e exclusão completa.
 Serviço:
 
+**Cliente**
 - Repository Cliente criado
 
 Crie um serviço para manipular a lógica de negócios. Implemente métodos para salvar transações, marcar transações como inativas e excluir transações permanentemente.
@@ -42,6 +46,8 @@ Implemente um componente ou serviço que chame a API do backend para obter dados
 Roteamento:
 
 Configure o roteamento para navegar entre diferentes componentes da aplicação.
+
+
 Banco de Dados (MySQL):
 Estrutura do Banco de Dados:
 Crie uma tabela no banco de dados para armazenar as transações, incluindo os campos mencionados (nome do produto, endereço do cliente, telefone do cliente, valor da compra e um campo para indicar se a transação está ativa).
