@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.pedidos.foxpedidos.Domain.Cliente.Cliente;
 import br.com.pedidos.foxpedidos.Domain.Cliente.ClienteRepository;
 import br.com.pedidos.foxpedidos.Domain.Cliente.DTOCadastroCliente;
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/cliente")
@@ -18,7 +21,9 @@ public class ClienteController {
     private ClienteRepository clienteRepository;
 
     @PostMapping
-    public void cadastrar(@RequestBody String data){
-        System.out.println(data);
+    @Transactional
+    public ResponseEntity cadastrar(@RequestBody @Valid DTOCadastroCliente data){
+        clienteRepository.save(new Cliente(data));
+        return ResponseEntity.ok().build();
     }
 }
