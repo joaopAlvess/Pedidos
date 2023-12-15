@@ -27,4 +27,12 @@ public class Cliente {
     private String telefone;
     private String valorAdicional;
     
+
+    public Cliente(DTOCadastroCliente data){
+        this.nome = data.nome();
+        this.endereco = data.endereco();
+        this.telefone = data.telefone();
+        this.valorAdicional = data.valorAdicional();
+    }
+
 }
