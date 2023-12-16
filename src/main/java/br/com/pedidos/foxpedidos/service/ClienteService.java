@@ -21,4 +21,12 @@ public class ClienteService {
         }
         clienteRepository.saveAll(clientes);
     }
+
+    public void ativarAll(){
+        List<Cliente> clientes = clienteRepository.findAll();
+        for (Cliente cliente : clientes) {
+            cliente.setAtivo(true);
+        }
+        clienteRepository.saveAll(clientes);
+    }
 }

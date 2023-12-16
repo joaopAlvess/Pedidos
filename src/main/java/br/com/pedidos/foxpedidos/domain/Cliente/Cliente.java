@@ -27,7 +27,7 @@ public class Cliente {
     private String endereco;
     private String telefone;
     private String valorAdicional;
-    private Boolean ativo;
+    private boolean ativo;
 
     public Cliente(DTOCadastroCliente data){
         this.ativo = true;
@@ -37,6 +37,12 @@ public class Cliente {
         this.valorAdicional = data.valorAdicional();
     }
 
+    public boolean isAtivo() {
+        return ativo;
+    }
 
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
 
 }

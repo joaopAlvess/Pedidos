@@ -36,6 +36,13 @@ public class ClienteController {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping("/ativar")
+    @Transactional
+    public ResponseEntity<Void> ativarClientes(){
+        clienteService.ativarAll();
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping    
     public ResponseEntity<Page<Cliente>> listar(@PageableDefault(size = 10, sort = {"nome"})Pageable paginacao){
         Page<Cliente> clientes = clienteRepository.findByAtivoTrue(paginacao);
@@ -43,6 +50,7 @@ public class ClienteController {
     }
 
     @DeleteMapping
+    @Transactional
     public ResponseEntity<Void> exclusaoLogicaTodos(){
         clienteService.exclusaoLogicaAll();
         return ResponseEntity.ok().build();
