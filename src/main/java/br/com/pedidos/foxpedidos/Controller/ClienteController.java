@@ -40,5 +40,7 @@ public class ClienteController {
     }
 
     @DeleteMapping
-    public Resp
+    public ResponseEntity<Void> exclusaoLogicaTodos(){
+
+    }
 }
