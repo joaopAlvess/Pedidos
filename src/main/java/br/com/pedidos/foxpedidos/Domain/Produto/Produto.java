@@ -1,5 +1,6 @@
-package br.com.pedidos.foxpedidos.Domain.Produto;
+package br.com.pedidos.foxpedidos.domain.Produto;
 
+import br.com.pedidos.foxpedidos.dto.Produto.DTOCadastroProduto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

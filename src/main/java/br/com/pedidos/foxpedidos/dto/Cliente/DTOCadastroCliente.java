@@ -1,4 +1,4 @@
-package br.com.pedidos.foxpedidos.Domain.Cliente;
+package br.com.pedidos.foxpedidos.dto.Cliente;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

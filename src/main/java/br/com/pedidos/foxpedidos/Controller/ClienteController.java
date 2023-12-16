@@ -1,4 +1,4 @@
-package br.com.pedidos.foxpedidos.Controller;
+package br.com.pedidos.foxpedidos.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.pedidos.foxpedidos.Domain.Cliente.Cliente;
-import br.com.pedidos.foxpedidos.Domain.Cliente.ClienteRepository;
-import br.com.pedidos.foxpedidos.Domain.Cliente.DTOCadastroCliente;
+import br.com.pedidos.foxpedidos.domain.Cliente.Cliente;
+import br.com.pedidos.foxpedidos.dto.Cliente.DTOCadastroCliente;
+import br.com.pedidos.foxpedidos.repository.Cliente.ClienteRepository;
+
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
@@ -22,7 +23,7 @@ import jakarta.validation.Valid;
 @RequestMapping("/clientes")
 public class ClienteController {
     
-    @Autowired
+   @Autowired
     private ClienteRepository clienteRepository;
 
     @PostMapping
@@ -39,8 +40,5 @@ public class ClienteController {
     }
 
     @DeleteMapping
-    @Transactional
-    public ResponseEntity excluir(){
-bbb
-    }
+    public Resp
 }
