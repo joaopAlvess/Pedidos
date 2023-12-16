@@ -26,13 +26,18 @@ public class Cliente {
     private String endereco;
     private String telefone;
     private String valorAdicional;
-    
+    private Boolean ativo;
 
     public Cliente(DTOCadastroCliente data){
+        this.ativo = true;
         this.nome = data.nome();
         this.endereco = data.endereco();
         this.telefone = data.telefone();
         this.valorAdicional = data.valorAdicional();
+    }
+
+    public void exclusao(){
+        this.ativo = false;
     }
 
 }

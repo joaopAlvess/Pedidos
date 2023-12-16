@@ -4,19 +4,25 @@ Backend (Java Spring Boot):
 
 *MODELO DE DADOS:*
 
-Crie uma entidade JPA para representar os dados que serão armazenados no banco de dados (por exemplo, uma classe Transaction).
-Repositório:
+*Crie uma entidade JPA para representar os dados que serão armazenados no banco de dados (por exemplo, uma classe Transaction).*
+Repositorio
+
 
 **Cliente**
 - Entidade de Cliente já criada (falta implementação)
 
 **Produto**
+- Entidade de Produto já criada (falta implementação)
 
-Crie um repositório JPA para realizar operações no banco de dados, incluindo inserção, atualização, exclusão lógica e exclusão completa.
+*Crie um repositório JPA para realizar operações no banco de dados, incluindo **inserção**, atualização, exclusão lógica e exclusão completa.*
 Serviço:
 
 **Cliente**
-- Repository Cliente criado
+- Repository Cliente criado 
+
+**Produto**
+- Repository Produto criado
+
 
 Crie um serviço para manipular a lógica de negócios. Implemente métodos para salvar transações, marcar transações como inativas e excluir transações permanentemente.
 Controlador:
