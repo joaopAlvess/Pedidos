@@ -37,8 +37,6 @@ public class Cliente {
         this.valorAdicional = data.valorAdicional();
     }
 
-    public void exclusao(){
-        this.ativo = false;
-    }
+
 
 }

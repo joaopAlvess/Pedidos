@@ -5,6 +5,7 @@ create table clientes(
     endereco    varchar(150),
     telefone    varchar(150),
     valor_adicional     varchar(150),
+    ativo tinyint,
 
 
     primary key(id)

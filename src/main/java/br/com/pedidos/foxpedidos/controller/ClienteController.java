@@ -1,5 +1,6 @@
 package br.com.pedidos.foxpedidos.controller;
 
+import br.com.pedidos.foxpedidos.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,6 +27,8 @@ public class ClienteController {
    @Autowired
     private ClienteRepository clienteRepository;
 
+   @Autowired
+   private ClienteService clienteService;
     @PostMapping
     @Transactional
     public ResponseEntity<Void> cadastrar(@RequestBody @Valid DTOCadastroCliente data){
@@ -35,12 +38,13 @@ public class ClienteController {
 
     @GetMapping    
     public ResponseEntity<Page<Cliente>> listar(@PageableDefault(size = 10, sort = {"nome"})Pageable paginacao){
-        Page<Cliente> clientes = clienteRepository.findAll(paginacao);
+        Page<Cliente> clientes = clienteRepository.findByAtivoTrue(paginacao);
         return ResponseEntity.ok(clientes);
     }
 
     @DeleteMapping
     public ResponseEntity<Void> exclusaoLogicaTodos(){
-
+        clienteService.exclusaoLogicaAll();
+        return ResponseEntity.ok().build();
     }
 }
