@@ -1,5 +1,6 @@
 package br.com.pedidos.foxpedidos.controller;
 
+import br.com.pedidos.foxpedidos.dto.Cliente.DTOListarCliente;
 import br.com.pedidos.foxpedidos.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -43,10 +44,11 @@ public class ClienteController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping    
-    public ResponseEntity<Page<Cliente>> listar(@PageableDefault(size = 10, sort = {"nome"})Pageable paginacao){
-        Page<Cliente> clientes = clienteRepository.findByAtivoTrue(paginacao);
-        return ResponseEntity.ok(clientes);
+
+    @GetMapping
+    public ResponseEntity<Page<DTOListarCliente>> listar(@PageableDefault(size = 10, sort = {"nome"})Pageable paginacao){
+       Page<DTOListarCliente> dados = clienteService.listarClientes(paginacao);
+       return ResponseEntity.ok(dados);
     }
 
     @DeleteMapping

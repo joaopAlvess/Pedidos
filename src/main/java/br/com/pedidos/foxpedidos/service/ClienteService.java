@@ -2,7 +2,10 @@ package br.com.pedidos.foxpedidos.service;
 
 import java.util.List;
 
+import br.com.pedidos.foxpedidos.dto.Cliente.DTOListarCliente;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.pedidos.foxpedidos.domain.Cliente.Cliente;
@@ -28,5 +31,9 @@ public class ClienteService {
             cliente.setAtivo(true);
         }
         clienteRepository.saveAll(clientes);
+    }
+
+    public Page<DTOListarCliente> listarClientes(Pageable paginacao) {
+        return clienteRepository.findByAtivoTrue(paginacao);
     }
 }
