@@ -38,13 +38,14 @@ public class ClienteService {
         return clienteRepository.findByAtivoTrue(paginacao);
     }
 
-    public void editarCliente(Long clienteId, DTOEditarCliente dtoEditarCliente){
+    public Cliente editarCliente(Long clienteId, DTOEditarCliente dtoEditarCliente){
         Cliente cliente = clienteRepository.findById(clienteId)
                 .orElseThrow(() -> new RuntimeException("O ID de cliente não foi encontrado."));
 
         dtoEditarCliente.telefone().ifPresent(cliente::setTelefone);
         dtoEditarCliente.endereco().ifPresent(cliente::setEndereco);
 
-        clienteRepository.save(cliente);
+        Cliente clieteAtt = clienteRepository.save(cliente);
+        return clieteAtt;
     }
 }

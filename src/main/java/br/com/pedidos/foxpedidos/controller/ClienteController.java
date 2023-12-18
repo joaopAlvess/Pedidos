@@ -50,10 +50,17 @@ public class ClienteController {
 
     @PutMapping("/{clienteId}")
     @Transactional
-    public ResponseEntity<Void> atualizar(@PathVariable Long clienteId, @RequestBody DTOEditarCliente dtoEditarCliente) {
+    public ResponseEntity<Cliente> atualizar(@PathVariable Long clienteId, @RequestBody DTOEditarCliente dtoEditarCliente) {
 
-        clienteService.editarCliente(clienteId, dtoEditarCliente);
-        return ResponseEntity.ok().build();
+        Cliente clienteAtt = clienteService.editarCliente(clienteId, dtoEditarCliente);
+        return ResponseEntity.ok(clienteAtt);
+    }
+
+    @DeleteMapping("/{clienteId}")
+    @Transactional
+    public ResponseEntity<Void> excluirPorId(@PathVariable Long clienteId) {
+        clienteRepository.deleteById(clienteId);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping
@@ -62,6 +69,5 @@ public class ClienteController {
         clienteService.exclusaoLogicaAll();
         return ResponseEntity.ok().build();
     }
-
 
 }
