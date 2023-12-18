@@ -6,11 +6,17 @@ import br.com.pedidos.foxpedidos.repository.Produto.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ProdutoService {
 
     @Autowired
     private ProdutoRepository produtoRepository;
+
+    public Optional<Produto> listarPorId(Long id) {
+        return produtoRepository.findById(id);
+    }
 
     public Produto editarProduto(Long produtoId, DTOEditarProduto dtoEditarProduto) {
         Produto produto = produtoRepository.findById(produtoId)
@@ -22,4 +28,6 @@ public class ProdutoService {
         Produto produtoAtt = produtoRepository.save(produto);
         return produtoAtt;
     }
+
+
 }
