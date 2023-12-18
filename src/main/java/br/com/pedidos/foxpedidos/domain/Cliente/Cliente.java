@@ -1,6 +1,7 @@
 package br.com.pedidos.foxpedidos.domain.Cliente;
 
 import br.com.pedidos.foxpedidos.dto.Cliente.DTOCadastroCliente;
+import br.com.pedidos.foxpedidos.dto.Cliente.DTOEditarCliente;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -45,4 +46,9 @@ public class Cliente {
         this.ativo = ativo;
     }
 
+    public void setTelefone(String telefone) { this.telefone = telefone;
+    }
+
+    public void setEndereco(String endereco) { this.endereco = endereco;
+    }
 }

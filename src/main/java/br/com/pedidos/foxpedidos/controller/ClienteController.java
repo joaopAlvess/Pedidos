@@ -1,5 +1,6 @@
 package br.com.pedidos.foxpedidos.controller;
 
+import br.com.pedidos.foxpedidos.dto.Cliente.DTOEditarCliente;
 import br.com.pedidos.foxpedidos.dto.Cliente.DTOListarCliente;
 import br.com.pedidos.foxpedidos.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,12 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.pedidos.foxpedidos.domain.Cliente.Cliente;
 import br.com.pedidos.foxpedidos.dto.Cliente.DTOCadastroCliente;
@@ -24,37 +20,48 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
-    
-   @Autowired
+
+    @Autowired
     private ClienteRepository clienteRepository;
 
-   @Autowired
-   private ClienteService clienteService;
+    @Autowired
+    private ClienteService clienteService;
+
     @PostMapping
     @Transactional
-    public ResponseEntity<Void> cadastrar(@RequestBody @Valid DTOCadastroCliente data){
+    public ResponseEntity<Void> cadastrar(@RequestBody @Valid DTOCadastroCliente data) {
         clienteRepository.save(new Cliente(data));
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/ativar")
     @Transactional
-    public ResponseEntity<Void> ativarClientes(){
+    public ResponseEntity<Void> ativarClientes() {
         clienteService.ativarAll();
         return ResponseEntity.ok().build();
     }
 
 
     @GetMapping
-    public ResponseEntity<Page<DTOListarCliente>> listar(@PageableDefault(size = 10, sort = {"nome"})Pageable paginacao){
-       Page<DTOListarCliente> dados = clienteService.listarClientes(paginacao);
-       return ResponseEntity.ok(dados);
+    public ResponseEntity<Page<DTOListarCliente>> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao) {
+        Page<DTOListarCliente> dados = clienteService.listarClientes(paginacao);
+        return ResponseEntity.ok(dados);
+    }
+
+    @PutMapping("/{clienteId}")
+    @Transactional
+    public ResponseEntity<Void> atualizar(@PathVariable Long clienteId, @RequestBody DTOEditarCliente dtoEditarCliente) {
+
+        clienteService.editarCliente(clienteId, dtoEditarCliente);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping
     @Transactional
-    public ResponseEntity<Void> exclusaoLogicaTodos(){
+    public ResponseEntity<Void> exclusaoLogicaTodos() {
         clienteService.exclusaoLogicaAll();
         return ResponseEntity.ok().build();
     }
+
+
 }

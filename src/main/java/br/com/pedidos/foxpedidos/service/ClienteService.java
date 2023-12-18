@@ -2,6 +2,7 @@ package br.com.pedidos.foxpedidos.service;
 
 import java.util.List;
 
+import br.com.pedidos.foxpedidos.dto.Cliente.DTOEditarCliente;
 import br.com.pedidos.foxpedidos.dto.Cliente.DTOListarCliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -35,5 +36,15 @@ public class ClienteService {
 
     public Page<DTOListarCliente> listarClientes(Pageable paginacao) {
         return clienteRepository.findByAtivoTrue(paginacao);
+    }
+
+    public void editarCliente(Long clienteId, DTOEditarCliente dtoEditarCliente){
+        Cliente cliente = clienteRepository.findById(clienteId)
+                .orElseThrow(() -> new RuntimeException("O ID de cliente não foi encontrado."));
+
+        dtoEditarCliente.telefone().ifPresent(cliente::setTelefone);
+        dtoEditarCliente.endereco().ifPresent(cliente::setEndereco);
+
+        clienteRepository.save(cliente);
     }
 }
