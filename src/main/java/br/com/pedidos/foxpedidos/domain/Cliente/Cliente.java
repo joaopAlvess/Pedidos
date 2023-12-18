@@ -2,11 +2,8 @@ package br.com.pedidos.foxpedidos.domain.Cliente;
 
 import br.com.pedidos.foxpedidos.dto.Cliente.DTOCadastroCliente;
 import br.com.pedidos.foxpedidos.dto.Cliente.DTOEditarCliente;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -30,7 +27,7 @@ public class Cliente {
     private String valorAdicional;
     private boolean ativo;
 
-    public Cliente(DTOCadastroCliente data){
+    public Cliente(DTOCadastroCliente data) {
         this.ativo = true;
         this.nome = data.nome();
         this.endereco = data.endereco();
@@ -46,9 +43,12 @@ public class Cliente {
         this.ativo = ativo;
     }
 
-    public void setTelefone(String telefone) { this.telefone = telefone;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
-    public void setEndereco(String endereco) { this.endereco = endereco;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
+
 }

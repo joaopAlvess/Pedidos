@@ -70,4 +70,11 @@ public class ClienteController {
         return ResponseEntity.ok().build();
     }
 
+    @DeleteMapping("/excluir")
+    @Transactional
+    public ResponseEntity<Void> excluir() {
+        clienteRepository.deleteAll();
+        return ResponseEntity.noContent().build();
+    }
+
 }

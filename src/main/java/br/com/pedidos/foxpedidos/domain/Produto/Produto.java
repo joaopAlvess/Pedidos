@@ -30,4 +30,16 @@ public class Produto {
         this.nome = data.nome();
         this.valor = data.valor();
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getValor() {
+        return valor;
+    }
 }
