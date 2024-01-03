@@ -3,6 +3,7 @@ package br.com.pedidos.foxpedidos.domain.Cliente;
 import br.com.pedidos.foxpedidos.domain.Produto.Produto;
 import br.com.pedidos.foxpedidos.dto.Cliente.DTOCadastroCliente;
 import br.com.pedidos.foxpedidos.dto.Cliente.DTOEditarCliente;
+import br.com.pedidos.foxpedidos.dto.Cliente.DTOListarCliente;
 import jakarta.persistence.*;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -38,6 +39,16 @@ public class Cliente {
         this.telefone = data.telefone();
         this.valorAdicional = data.valorAdicional();
     }
+
+    public DTOListarCliente toDTOListarCliente() {
+      return new DTOListarCliente(
+              this.id,
+              this.nome,
+              this.telefone,
+              this.valorAdicional,
+              this.produto != null ? this.produto.toDTODetalhesProduto(): null
+      );
+    };
 
     public boolean isAtivo() {
         return ativo;

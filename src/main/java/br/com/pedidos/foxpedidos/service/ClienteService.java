@@ -35,7 +35,8 @@ public class ClienteService {
     }
 
     public Page<DTOListarCliente> listarClientes(Pageable paginacao) {
-        return clienteRepository.findByAtivoTrue(paginacao);
+        Page<Cliente> clientePage = clienteRepository.findByAtivoTrue(paginacao);
+        return clientePage.map(Cliente::toDTOListarCliente);
     }
 
     public Cliente editarCliente(Long clienteId, DTOEditarCliente dtoEditarCliente){

@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import br.com.pedidos.foxpedidos.domain.Cliente.Cliente;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long>{
-    Page<DTOListarCliente> findByAtivoTrue(Pageable paginacao);
+    Page<Cliente> findByAtivoTrue(Pageable paginacao);
 }
