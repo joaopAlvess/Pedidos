@@ -1,5 +1,6 @@
 package br.com.pedidos.foxpedidos.domain.Cliente;
 
+import br.com.pedidos.foxpedidos.domain.Produto.Produto;
 import br.com.pedidos.foxpedidos.dto.Cliente.DTOCadastroCliente;
 import br.com.pedidos.foxpedidos.dto.Cliente.DTOEditarCliente;
 import jakarta.persistence.*;
@@ -26,6 +27,9 @@ public class Cliente {
     private String telefone;
     private String valorAdicional;
     private boolean ativo;
+    @ManyToOne
+    @JoinColumn(name = "produto_id")
+    private Produto produto;
 
     public Cliente(DTOCadastroCliente data) {
         this.ativo = true;
@@ -51,4 +55,11 @@ public class Cliente {
         this.endereco = endereco;
     }
 
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
 }

@@ -1,16 +1,15 @@
 package br.com.pedidos.foxpedidos.domain.Produto;
 
+import br.com.pedidos.foxpedidos.domain.Cliente.Cliente;
 import br.com.pedidos.foxpedidos.dto.Produto.DTOCadastroProduto;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Table(name = "produtos")
 @Entity(name = "Produto")
@@ -25,6 +24,8 @@ public class Produto {
     private Long id;
     private String nome;
     private String valor;
+    @OneToMany(mappedBy = "produto")
+    private List<Cliente> clientes;
 
     public Produto(DTOCadastroProduto data){
         this.nome = data.nome();

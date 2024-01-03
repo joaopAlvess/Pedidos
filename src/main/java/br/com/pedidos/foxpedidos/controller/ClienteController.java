@@ -1,9 +1,12 @@
 package br.com.pedidos.foxpedidos.controller;
 
+import br.com.pedidos.foxpedidos.domain.Produto.Produto;
 import br.com.pedidos.foxpedidos.dto.Cliente.DTOEditarCliente;
 import br.com.pedidos.foxpedidos.dto.Cliente.DTOListarCliente;
+import br.com.pedidos.foxpedidos.repository.Produto.ProdutoRepository;
 import br.com.pedidos.foxpedidos.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -25,12 +28,21 @@ public class ClienteController {
     private ClienteRepository clienteRepository;
 
     @Autowired
+    private ProdutoRepository produtoRepository;
+
+    @Autowired
     private ClienteService clienteService;
 
     @PostMapping
     @Transactional
     public ResponseEntity<Void> cadastrar(@RequestBody @Valid DTOCadastroCliente data) {
-        clienteRepository.save(new Cliente(data));
+        Cliente cliente = new Cliente(data);
+        if (data.produtoId() != null) {
+            Produto produto = produtoRepository.findById(data.produtoId())
+                    .orElseThrow(() -> new RuntimeException("Produto não encontrado: " + data.produtoId()));
+            cliente.setProduto(produto);
+        }
+        clienteRepository.save(cliente);
         return ResponseEntity.ok().build();
     }
 

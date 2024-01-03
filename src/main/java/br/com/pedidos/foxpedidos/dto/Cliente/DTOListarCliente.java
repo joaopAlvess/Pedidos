@@ -5,6 +5,5 @@ public record DTOListarCliente(
         String nome,
         String telefone,
         String valorAdicional
-
 ) {
 }
