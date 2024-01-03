@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Table(name = "produtos")
@@ -24,13 +25,12 @@ public class Produto {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    private String valor;
-//    @OneToMany(mappedBy = "produto")
-//    private List<Cliente> clientes;
+    private BigDecimal valor;
+
 
     public Produto(DTOCadastroProduto data){
         this.nome = data.nome();
-        this.valor = data.valor();
+        this.valor = new BigDecimal(data.valor());
     }
 
     public DTODetalhesProduto toDTODetalhesProduto() {
@@ -49,7 +49,7 @@ public class Produto {
         return nome;
     }
 
-    public String getValor() {
+    public BigDecimal getValor() {
         return valor;
     }
 
@@ -57,7 +57,7 @@ public class Produto {
          this.nome = nome;
     }
 
-    public void setValor(String valor) {
+    public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
 }

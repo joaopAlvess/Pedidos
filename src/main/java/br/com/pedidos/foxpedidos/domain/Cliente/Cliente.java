@@ -12,6 +12,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Table(name = "clientes")
 @Entity(name = "Cliente")
 @AllArgsConstructor
@@ -26,7 +28,8 @@ public class Cliente {
     private String nome;
     private String endereco;
     private String telefone;
-    private String valorAdicional;
+    @Column(name = "valor_adicional")
+    private BigDecimal valorAdicional;
     private boolean ativo;
     @ManyToOne
     @JoinColumn(name = "produto_id")
@@ -37,7 +40,7 @@ public class Cliente {
         this.nome = data.nome();
         this.endereco = data.endereco();
         this.telefone = data.telefone();
-        this.valorAdicional = data.valorAdicional();
+        this.valorAdicional = new BigDecimal(data.valorAdicional());
     }
 
     public DTOListarCliente toDTOListarCliente() {
